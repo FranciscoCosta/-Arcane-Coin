@@ -17,10 +17,28 @@ describe("ArcaneCoin", function () {
   }
 
   describe("Deployment", function () {
-    it("Should set the right unlockTime", async function () {
+    it("Should have correct name", async function () {
       const { arcaneCoin, owner, otherAccount } = await loadFixture(deployFixture);
+      const name = await arcaneCoin.name();
+      expect(name).to.equal("ArcaneCoin");
+    });
 
-      expect(true).to.be.true;
+    it("Should have correct symbol", async function () {
+      const { arcaneCoin, owner, otherAccount } = await loadFixture(deployFixture);
+      const symbol = await arcaneCoin.symbol();
+      expect(symbol).to.equal("ARC");
+    });
+
+    it("Should have correct decimals", async function () {
+      const { arcaneCoin, owner, otherAccount } = await loadFixture(deployFixture);
+      const decimals = await arcaneCoin.decimals();
+      expect(decimals).to.equal(18);
+    });
+
+    it("Should have correct total supply", async function () {
+      const { arcaneCoin, owner, otherAccount } = await loadFixture(deployFixture);
+      const totalSupply = await arcaneCoin.totalSupply();
+      expect(totalSupply).to.equal(1000n * 10n ** 18n);
     });
   });
 });
